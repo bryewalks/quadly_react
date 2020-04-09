@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { PageContainer } from 'Components/Globals'
+
 const Home = (props) => {
   return (
-    <div>
+    <PageContainer>
       <h1>Home Page</h1>
-    </div>
+    </PageContainer>
   );
 }
 

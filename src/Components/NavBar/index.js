@@ -1,8 +1,7 @@
 import React from 'react'
+
 import paperPlane from './images/paper-plane.svg'
-
-import { Container, Header, Logo, StyledLink, Title, Navigation } from './style'
-
+import { Container, Header, Logo, Navigation, StyledLink, Title } from './style'
 
 const NavBar = () => {
   return (

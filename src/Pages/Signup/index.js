@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { PageContainer } from 'Components/Globals'
+
 const Signup = (props) => {
   return (
-    <div>
+    <PageContainer>
       <h1>Signup Page</h1>
-    </div>
+    </PageContainer>
   );
 }
 
