@@ -6,5 +6,6 @@ export const Container = styled.div`
 `
 
 export const PageContainer = styled.div`
-  min-height: calc(100vh - 376.5px);
+  padding: 25px;
+  min-height: calc(100vh - 335px);
 `

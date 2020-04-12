@@ -11,7 +11,7 @@ const logoStyle = css`
 
 export const Footer = styled.div`
   background-color: #282F37;
-  height: 250px;
+  height: 180px;
   padding: 25px;
   text-align: center;
 `
