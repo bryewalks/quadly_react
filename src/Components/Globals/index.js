@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const Container = styled.div`
   height: ${props => props.height ? props.height : 'default'};
@@ -8,4 +8,12 @@ export const Container = styled.div`
 export const PageContainer = styled.div`
   padding: 25px;
   min-height: calc(100vh - 335px);
+`
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: lightgray;
+  }
 `

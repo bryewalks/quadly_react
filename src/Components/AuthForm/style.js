@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Form = styled.form`
+  background-color: white;
   border-radius: 15px;
   border: 2px solid #282F37;
   margin: 50px auto;
