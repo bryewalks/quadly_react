@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Form, FormBody, FormHeader } from './style'
 
-export const AuthForm = ({ children, title }) => {
+export const AuthForm = ({ children, title, submit }) => {
   return (
-    <Form>
+    <Form onSubmit={ submit }>
       <FormHeader>
         { title }
       </FormHeader>
