@@ -14,8 +14,8 @@ const Login = (props) => {
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState('')
 
-  const handleLogin = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
     let params = {
       email: email,
       password: password
@@ -38,11 +38,11 @@ const Login = (props) => {
 
   return (
     <PageContainer>
-      <AuthForm submit={ handleLogin } title="Login">
+      <AuthForm submit={ handleSubmit } title="Login">
         <h1>Email</h1>
-        <input onChange={ event => setEmail(event.target.value)} placeholder="Email" />
+        <input onChange={ e => setEmail(e.target.value)} placeholder="Email" />
         <h1>Password</h1>
-        <input onChange={ event => setPassword(event.target.value)} placeholder="Password" type="password" />
+        <input onChange={ e => setPassword(e.target.value)} placeholder="Password" type="password" />
         { errors && 
           <div>{ errors }</div>
         }
