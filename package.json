@@ -21,7 +21,8 @@
     "start": "PORT=8080 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prestart": "rm ./node_modules/webpack-dev-server/ssl/server.pem && cat /home/brye/Projects/ssl/localhost+2-key.pem /home/brye/Projects/ssl/localhost+2.pem > ./node_modules/webpack-dev-server/ssl/server.pem"
   },
   "eslintConfig": {
     "extends": "react-app"
