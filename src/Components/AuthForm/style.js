@@ -1,11 +1,18 @@
 import styled from 'styled-components'
+import { PageContainer } from 'Components/Globals'
 
 export const Form = styled.form`
   background-color: white;
   border-radius: 15px;
   border: 2px solid #282F37;
-  margin: 50px auto;
-  max-width: 600px;
+  margin: 0 auto;
+  min-width: 600px;
+`
+
+export const FormContainer = styled(PageContainer)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export const FormHeader = styled.div`
@@ -20,7 +27,7 @@ export const FormHeader = styled.div`
 `
 
 export const FormBody = styled.div`
-  padding: 25px;
+  padding: 25px 0;
   text-align: center;
 
   h1 {

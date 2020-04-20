@@ -6,8 +6,7 @@ export const Container = styled.div`
 `
 
 export const PageContainer = styled.div`
-  padding: 25px;
-  min-height: calc(100vh - 335px);
+  min-height: calc(100vh - 285px);
 `
 
 export const GlobalStyle = createGlobalStyle`
