@@ -3,9 +3,13 @@ import marker from './images/marker.svg'
 
 import { Marker } from './style'
 
-export const MapMarker = () => {
+export const MapMarker = ({history, location}) => {
+  const handleMarkerClick = () => {
+    history.push(`locations/${ location.id }`)
+  }
+
   return (
-    <Marker src={ marker } />
+    <Marker src={ marker } onClick={ handleMarkerClick } />
   )
 }
 
