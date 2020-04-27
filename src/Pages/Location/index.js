@@ -3,29 +3,28 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { PageContainer } from 'Components/Globals'
-import GoogleMap from 'Components/GoogleMap'
 
-
-export const Locations = (props) => {
-  const [locations, setLocations] = useState([])
+export const Location = (props) => {
+  const { match: { params } } = props;
+  const [location, setLocation] = useState({})
 
   useEffect(() => {
     axios
-    .get("/api/locations")
+    .get(`/api/locations/${ params.id }`)
     .then(response => {
-      setLocations(response.data)
+      setLocation(response.data)
     })
     .catch((error) => {
       console.error(error);
   });
-  }, [])
+  }, [params])
 
   return (
     <PageContainer>
-      <GoogleMap locations={ locations } history={ props.history } />
+      Location Page
+      <div>{ location.id }</div>
     </PageContainer>
   )
 }
 
-
-export default Locations
+export default Location

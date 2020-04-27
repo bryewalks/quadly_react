@@ -7,7 +7,7 @@ import { MapMarker } from 'Components/MapMarker'
 
 import { MapContainer, mapStyle } from './style'
 
-export const GoogleMap = ({ locations }) => {
+export const GoogleMap = ({ locations, history }) => {
   const [center, setCenter] = useState(null)
   const {latitude, longitude} = useLocation()
 
@@ -29,7 +29,14 @@ export const GoogleMap = ({ locations }) => {
         defaultZoom={ 11 }
         options={ mapOptions }
         bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_KEY }}>
-        { locations && locations.map((location, index) => <MapMarker key={ index } lat={ location.latitude } lng={ location.longitude } />)}
+        { locations && locations.map((location, index) => 
+          <MapMarker 
+            key={ index }
+            lat={ location.latitude }
+            lng={ location.longitude }
+            location={ location }
+            history={ history }/>
+        )}
       </GoogleMapReact>
     </MapContainer>
   )
