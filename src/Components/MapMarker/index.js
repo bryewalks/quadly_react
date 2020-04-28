@@ -5,7 +5,7 @@ import { Marker } from './style'
 
 export const MapMarker = ({history, location}) => {
   const handleMarkerClick = () => {
-    history.push(`locations/${ location.id }`)
+   if (location) history.push(`locations/${ location.id }`)
   }
 
   return (
