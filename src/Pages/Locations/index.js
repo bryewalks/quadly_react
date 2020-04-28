@@ -8,6 +8,7 @@ import GoogleMap from 'Components/GoogleMap'
 
 export const Locations = (props) => {
   const [locations, setLocations] = useState([])
+  const [center, setCenter] = useState([])
   const {latitude, longitude} = useLocation()
 
   useEffect(() => {
@@ -21,9 +22,13 @@ export const Locations = (props) => {
   });
   }, [])
 
+  useEffect(() => {
+    setCenter([latitude, longitude])
+  }, [latitude, longitude])
+  
   return (
     <PageContainer>
-      <GoogleMap locations={ locations } history={ props.history } center={ (latitude && longitude) ? [latitude, longitude] : undefined} />
+      <GoogleMap locations={ locations } history={ props.history } center={ center } />
     </PageContainer>
   )
 }
