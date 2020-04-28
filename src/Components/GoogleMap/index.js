@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
 import GoogleMapReact from 'google-map-react';
-import { useLocation } from 'hooks'
-import { MapMarker } from 'Components/MapMarker'
 
+import { MapMarker } from 'Components/MapMarker'
 
 import { MapContainer, mapStyle } from './style'
 
-export const GoogleMap = ({ locations, history }) => {
-  const [center, setCenter] = useState(null)
-  const {latitude, longitude} = useLocation()
+export const GoogleMap = ({ locations, history, center }) => {
 
   const mapOptions = {
     styles: mapStyle
   }
-
-  useEffect(() => {
-    if (latitude && longitude) {
-      setCenter({lat: latitude, lng: longitude})
-    }
-  }, [latitude, longitude])
 
   return (
     <MapContainer>
