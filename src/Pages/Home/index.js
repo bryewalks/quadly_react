@@ -4,10 +4,11 @@ import axios from 'axios'
 import { PageContainer } from 'Components/Globals'
 import { useLocation } from 'hooks'
 
-import { ButtonContainer, DroneBackground, WeatherButton } from './style'
+import { ButtonContainer, DroneBackground, Button } from './style'
 
 const Home = (props) => {
   const [weather, setWeather] = useState(null)
+  const [flightZone, setFlightZone] = useState('')
   const {latitude, longitude} = useLocation()
   
   const handleCheckWeather = () => {
@@ -25,9 +26,26 @@ const Home = (props) => {
         console.error(error)
     });
   }
-  
+
+  const handleCheckFlightZone = () => {
+    let params = {
+      latitude: latitude,
+      longitude: longitude
+    }
+
+    axios
+      .get("/api/airports/status", {params})
+      .then(response => {
+        setFlightZone(response.data)
+      })
+      .catch((error) => {
+        console.error(error)
+    });
+  }
+
   return (
     <DroneBackground>
+      { flightZone && <h1>{ flightZone.status }</h1>}
       { weather && <>
         <h2>Precipitation { weather.chance_of_precipitation }%</h2>
         <h2>Cloud Coverage { weather.cloud_cover }%</h2>
@@ -38,9 +56,9 @@ const Home = (props) => {
         <h2>{ weather.good_to_fly ? "It's a good day to go flying!" : "Weather is not ideal for flying."}</h2>
       </>}
       <ButtonContainer>
-        <WeatherButton onClick={ handleCheckWeather }>Check Weather</WeatherButton>
-        <WeatherButton onClick={ handleCheckWeather }>Check Weather</WeatherButton>
-        <WeatherButton onClick={ handleCheckWeather }>Check Weather</WeatherButton>
+        <Button onClick={ handleCheckWeather }>Check Weather</Button>
+        <Button onClick={ () => props.history.push('/locations') }>Locations</Button>
+        <Button onClick={ handleCheckFlightZone }>Flight Zone Status</Button>
       </ButtonContainer>
     </DroneBackground>
   );
