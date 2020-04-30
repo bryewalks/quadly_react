@@ -10,9 +10,9 @@ export const Form = styled.form`
 `
 
 export const FormContainer = styled(PageContainer)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const FormHeader = styled.div`
