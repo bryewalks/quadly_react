@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 
-import { PageContainer } from 'Components/Globals'
+import Modal from 'Components/Modal'
 import { useLocation } from 'hooks'
 
 import { ButtonContainer, DroneBackground, Button } from './style'
@@ -9,6 +9,7 @@ import { ButtonContainer, DroneBackground, Button } from './style'
 const Home = (props) => {
   const [weather, setWeather] = useState(null)
   const [flightZone, setFlightZone] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {latitude, longitude} = useLocation()
   
   const handleCheckWeather = () => {
@@ -21,6 +22,7 @@ const Home = (props) => {
       .get("/api/weather", {params})
       .then(response => {
         setWeather(response.data)
+        toggleModal()
       })
       .catch((error) => {
         console.error(error)
@@ -43,10 +45,14 @@ const Home = (props) => {
     });
   }
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
+
   return (
     <DroneBackground>
       { flightZone && <h1>{ flightZone.status }</h1>}
-      { weather && <>
+      { isModalOpen && <Modal title='Current Weather' closeModal={ toggleModal }>
         <h2>Precipitation { weather.chance_of_precipitation }%</h2>
         <h2>Cloud Coverage { weather.cloud_cover }%</h2>
         <h2>Max Gust Speed { weather.max_gust_speed } MPH</h2>
@@ -54,7 +60,7 @@ const Home = (props) => {
         <h2>visabile miles { weather.visibility_miles }</h2>
         <h2>wind speed { weather.wind_speed } MPH</h2>
         <h2>{ weather.good_to_fly ? "It's a good day to go flying!" : "Weather is not ideal for flying."}</h2>
-      </>}
+      </Modal>}
       <ButtonContainer>
         <Button onClick={ handleCheckWeather }>Check Weather</Button>
         <Button onClick={ () => props.history.push('/locations') }>Locations</Button>
