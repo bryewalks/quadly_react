@@ -29,7 +29,6 @@ export const Button = styled.button`
   padding: 15px;
   margin: 20px;
   font-size: 16px;
-  /* min-width: 250px; */
   border: 2px solid #282F37;
   text-transform: uppercase;
   letter-spacing: 1px;

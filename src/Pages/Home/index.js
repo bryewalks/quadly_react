@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 
+import FlightStatus from 'Components/FlightStatus'
 import Modal from 'Components/Modal'
 import { useLocation } from 'hooks'
 
@@ -49,9 +50,15 @@ const Home = (props) => {
     setIsModalOpen(!isModalOpen)
   }
 
+  const clearFlightZone = () => {
+    setFlightZone('')
+  }
+
   return (
     <DroneBackground>
-      { flightZone && <h1>{ flightZone.status }</h1>}
+      { flightZone && <FlightStatus 
+                        status={flightZone.status} 
+                        clearStatus={ clearFlightZone } />}
       { isModalOpen && <Modal title='Current Weather' closeModal={ toggleModal }>
         <h2>Precipitation { weather.chance_of_precipitation }%</h2>
         <h2>Cloud Coverage { weather.cloud_cover }%</h2>
