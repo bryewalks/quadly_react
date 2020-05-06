@@ -5,8 +5,8 @@ import marker from './images/marker.svg'
 import { Marker } from './style'
 
 export const MapMarker = ({ location }) => {
-  let history = useHistory()
-  
+  const history = useHistory()
+
   const handleMarkerClick = () => {
    if (location) history.push(`locations/${ location.id }`)
   }

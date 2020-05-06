@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 
 import { CardContainer, CardLocation, CardTitle } from './style'
 export const LocationCard = ({ location }) => {
-  let history = useHistory()
+  const history = useHistory()
 
   const handleClick = () => {
     history.push(`/locations/${ location.id }`)
