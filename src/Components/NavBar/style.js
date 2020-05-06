@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   display: flex;
+  cursor: pointer;
 `
 
 export const Logo = styled.img`
@@ -42,7 +43,6 @@ export const StyledLink = styled(Link)`
 
 export const Title = styled.a`
   color: white;
-  cursor: default;
   font-size: 24px;
   margin: 0 5px;
 `
