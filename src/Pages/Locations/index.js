@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useLocation } from 'hooks'
 
+import { LocationCards } from 'Components/LocationCards'
 import { PageContainer } from 'Components/Globals'
 import GoogleMap from 'Components/GoogleMap'
 
@@ -29,6 +30,7 @@ export const Locations = (props) => {
   return (
     <PageContainer>
       <GoogleMap locations={ locations } history={ props.history } center={ center } />
+      <LocationCards locations={ locations } />
     </PageContainer>
   )
 }
