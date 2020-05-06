@@ -29,7 +29,7 @@ export const Locations = (props) => {
   
   return (
     <PageContainer>
-      <GoogleMap locations={ locations } history={ props.history } center={ center } />
+      <GoogleMap locations={ locations } center={ center } />
       <LocationCards locations={ locations } />
     </PageContainer>
   )

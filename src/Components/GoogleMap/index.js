@@ -5,7 +5,7 @@ import { MapMarker } from 'Components/MapMarker'
 
 import { MapContainer, mapStyle } from './style'
 
-export const GoogleMap = ({ location, locations, history, center }) => {
+export const GoogleMap = ({ location, locations, center }) => {
 
   const mapOptions = {
     styles: mapStyle
@@ -24,8 +24,7 @@ export const GoogleMap = ({ location, locations, history, center }) => {
             key={ index }
             lat={ location.latitude }
             lng={ location.longitude }
-            location={ location }
-            history={ history }/>
+            location={ location }/>
         )}
         { location &&
           <MapMarker 

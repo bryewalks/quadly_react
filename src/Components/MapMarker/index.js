@@ -1,9 +1,12 @@
 import React from 'react'
-import marker from './images/marker.svg'
+import { useHistory } from 'react-router-dom'
 
+import marker from './images/marker.svg'
 import { Marker } from './style'
 
-export const MapMarker = ({history, location}) => {
+export const MapMarker = ({ location }) => {
+  let history = useHistory()
+  
   const handleMarkerClick = () => {
    if (location) history.push(`locations/${ location.id }`)
   }
