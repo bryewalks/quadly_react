@@ -6,6 +6,11 @@ export const CardContainer = styled.div`
   border-radius: 5px;
   background-color: white;
   padding: 15px;
+  box-shadow: 5px 10px #888888;
+  :hover {
+    box-shadow: 10px 15px #888888;
+    cursor: pointer;
+  }
 `
 
 export const CardTitle = styled.div`

@@ -12,8 +12,10 @@ export const Locations = (props) => {
   const [center, setCenter] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [searchType, setSearchType] = useState('name')
+  const [pageNumber, setPageNumber] = useState(0)
   const {latitude, longitude} = useLocation()
-
+  const maxPerPage = 15
+  
   useEffect(() => {
     axios
     .get("/api/locations")
@@ -29,12 +31,31 @@ export const Locations = (props) => {
     setCenter([latitude, longitude])
   }, [latitude, longitude])
 
-  const filteredLocations = locations.filter(location => location[searchType].toLowerCase().indexOf(searchTerm) > -1)
+  const filteredLocations = (locations) => {
+    return locations.filter(location => location[searchType].toLowerCase().indexOf(searchTerm) > -1)
+  }
+
+  const paginatedLocations = (array, page) => {
+    let indexMin = page * maxPerPage
+    let indexMax = indexMin + maxPerPage
+    return array.filter(
+      (x, index) => index >= indexMin && index < indexMax
+    );
+  }
+  
+  const handleSearch = (e) => {
+    setPageNumber(0)
+    setSearchTerm(e.target.value)
+  }
+
+  const formattedLocations = paginatedLocations(filteredLocations(locations), pageNumber)
+
+  const disabledUp = pageNumber >= Math.floor(filteredLocations(locations).length / maxPerPage)
 
   return (
     <PageContainer>
-      <GoogleMap locations={ filteredLocations } center={ center } />
-      <input placeholder='search' onChange={ e => setSearchTerm(e.target.value) } />
+      <GoogleMap locations={ formattedLocations } center={ center } />
+      <input placeholder='search' onChange={ e => handleSearch(e) } />
       <input 
         type='radio' 
         name='searchType'
@@ -49,7 +70,16 @@ export const Locations = (props) => {
         checked={ searchType === 'address' }
         onChange={ () => setSearchType('address')} />
       <label htmlFor="address">address</label>
-      <LocationCards locations={ filteredLocations } />
+      <LocationCards locations={ formattedLocations } />
+      <button 
+        disabled={ pageNumber === 0 } 
+        onClick={ () => setPageNumber(pageNumber - 1)}>page down
+      </button>
+      <p>{ pageNumber + 1 }</p>
+      <button 
+        disabled={ disabledUp } 
+        onClick={ () => setPageNumber(pageNumber + 1)}>page up
+      </button>
     </PageContainer>
   )
 }
