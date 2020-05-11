@@ -10,9 +10,9 @@ export const MapMarker = ({ location }) => {
   const handleMarkerClick = () => {
    if (location) history.push(`locations/${ location.id }`)
   }
-
+  
   return (
-    <Marker src={ marker } onClick={ handleMarkerClick } />
+    <Marker src={ marker } onClick={ handleMarkerClick } clickable={ !!location } />
   )
 }
 

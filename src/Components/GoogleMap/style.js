@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const MapContainer = styled.div`
   height: 50vh;
   width: 100%;
+  position: relative;
 `
 
 export const mapStyle = [

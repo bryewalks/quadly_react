@@ -22,9 +22,15 @@ export const Location = (props) => {
   });
   }, [id])
   
+  const mapOptions = {
+    gestureHandling: 'none',
+    zoomControl: false,
+    draggableCursor: 'default'
+  }
+
   return (
     <PageContainer>
-      <GoogleMap center={ center } location={ location } />
+      <GoogleMap center={ center } location={ location } mapOptions={ mapOptions } />
     </PageContainer>
   )
 }

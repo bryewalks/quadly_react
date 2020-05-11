@@ -6,4 +6,5 @@ export const Marker = styled.img`
   src: ${ props => props.src};
   transform: translate(-50%,-100%);
   width: 35px;
+  cursor: ${props => props.clickable ? 'pointer' : 'default'};
 `
