@@ -7,6 +7,8 @@ import { LocationCards } from 'Components/LocationCards'
 import { PageContainer } from 'Components/Globals'
 import GoogleMap from 'Components/GoogleMap'
 
+import { MapButton } from './style'
+
 export const Locations = (props) => {
   const [locations, setLocations] = useState([])
   const [center, setCenter] = useState([])
@@ -14,6 +16,7 @@ export const Locations = (props) => {
   const [searchType, setSearchType] = useState('name')
   const [pageNumber, setPageNumber] = useState(0)
   const {latitude, longitude} = useLocation()
+  const [allMapMarkers, setAllMapMarkers] = useState(false)
   const maxPerPage = 15
   
   useEffect(() => {
@@ -50,11 +53,17 @@ export const Locations = (props) => {
 
   const formattedLocations = paginatedLocations(filteredLocations(locations), pageNumber)
 
+  const mapMarkersOption = allMapMarkers ? locations : formattedLocations
+
   const disabledUp = pageNumber >= Math.floor(filteredLocations(locations).length / maxPerPage)
 
   return (
     <PageContainer>
-      <GoogleMap locations={ formattedLocations } center={ center } />
+      <GoogleMap locations={ mapMarkersOption } center={ center }>
+        <MapButton onClick={ () => setAllMapMarkers(!allMapMarkers)}>
+          { allMapMarkers ? 'Show Filtered' : 'Show All'}
+        </MapButton>
+      </GoogleMap>
       <input placeholder='search' onChange={ e => handleSearch(e) } />
       <input 
         type='radio' 
