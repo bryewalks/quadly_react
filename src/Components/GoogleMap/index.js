@@ -5,10 +5,11 @@ import { MapMarker } from 'Components/MapMarker'
 
 import { MapContainer, mapStyle } from './style'
 
-export const GoogleMap = ({ children, location, locations, mapOptions, center }) => {
+export const GoogleMap = ({ children, location, locations, mapOptions, center, zoom = 11 }) => {
 
   const options = {
     styles: mapStyle,
+    fullscreenControl: true,
     ...mapOptions
   }
 
@@ -18,7 +19,7 @@ export const GoogleMap = ({ children, location, locations, mapOptions, center })
       <GoogleMapReact 
         defaultCenter={{lat: 40.712, lng: -74.006}}
         center={ center }
-        defaultZoom={ 11 }
+        defaultZoom={ zoom }
         options={ options }
         bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_KEY }}>
         { locations && locations.map((location, index) => 

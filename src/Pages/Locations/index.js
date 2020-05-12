@@ -6,8 +6,9 @@ import { useLocation } from 'hooks'
 import { LocationCards } from 'Components/LocationCards'
 import { PageContainer } from 'Components/Globals'
 import GoogleMap from 'Components/GoogleMap'
+import MapControls from 'Components/MapControls'
 
-import { MapButton } from './style'
+import { MapButton, MapButtons } from './style'
 
 export const Locations = (props) => {
   const [locations, setLocations] = useState([])
@@ -15,9 +16,10 @@ export const Locations = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchType, setSearchType] = useState('name')
   const [pageNumber, setPageNumber] = useState(0)
-  const {latitude, longitude} = useLocation()
   const [allMapMarkers, setAllMapMarkers] = useState(false)
-  const maxPerPage = 15
+  const [showMapControls, setShowMapControls] = useState(false)
+  const {latitude, longitude} = useLocation()
+  const maxPerPage = 12
   
   useEffect(() => {
     axios
@@ -60,9 +62,13 @@ export const Locations = (props) => {
   return (
     <PageContainer>
       <GoogleMap locations={ mapMarkersOption } center={ center }>
-        <MapButton onClick={ () => setAllMapMarkers(!allMapMarkers)}>
-          { allMapMarkers ? 'Show Filtered' : 'Show All'}
-        </MapButton>
+        <MapButtons>
+          <MapButton onClick={ () => setAllMapMarkers(!allMapMarkers)}>
+            { allMapMarkers ? 'Show Filtered' : 'Show All'}
+          </MapButton>
+          <MapButton onClick={ () => setShowMapControls(!showMapControls)}>Show Options</MapButton>
+        </MapButtons>
+        <MapControls showing={ showMapControls } />
       </GoogleMap>
       <input placeholder='search' onChange={ e => handleSearch(e) } />
       <input 

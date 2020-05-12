@@ -30,7 +30,11 @@ export const Location = (props) => {
 
   return (
     <PageContainer>
-      <GoogleMap center={ center } location={ location } mapOptions={ mapOptions } />
+      <GoogleMap 
+        center={ center } 
+        location={ location } 
+        mapOptions={ mapOptions }
+        zoom={ 13 } />
     </PageContainer>
   )
 }
